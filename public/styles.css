@@ -1,0 +1,223 @@
+
+        :root {
+            --primary-color: #0F4229;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            background: #ecf0ef;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+
+        .bg-primary {
+            background-color: var(--primary-color) !important;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: #f0fbf5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form Controls */
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            transition: all 0.15s ease-in-out;
+            line-height: 0.5rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(51, 102, 204, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+
+        /* Size Tags */
+        .size-tag {
+            background-color: #e8f5e8;
+            color: #28a745;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid #28a745;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .form-check-input:checked+.size-tag {
+            background-color: #28a745;
+            color: white;
+        }
+
+        /* Option Cards */
+        .option-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            background-color: #f8f9fa;
+            border-color: var(--primary-color);
+        }
+
+        .option-card .form-check-input {
+            margin-right: 0.5rem;
+        }
+
+        .option-card .form-check-input:checked+.form-check-label {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .option-card label {
+            cursor: pointer;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Suggested Label */
+        .suggested-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+
+        /* Card Shadow */
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
+
+        .card-body {
+            padding: 0rem 2rem;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08) !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 15px;
+            }
+
+            .card-body {
+                padding: 2rem 1.5rem !important;
+            }
+
+            .section-card {
+                padding: 1rem;
+            }
+
+            .btn-lg {
+                padding: 0.75rem 2rem !important;
+                font-size: 1rem !important;
+            }
+        }
+
+        /* Form Label Styling */
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+
+        .form-label i {
+            color: var(--text-muted);
+            width: 16px;
+        }
+
+        /* Header Improvements */
+        header h4 {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        header .btn {
+            border-radius: 20px;
+            padding: 0.375rem 1rem;
+            font-weight: 500;
+        }
+
+        /* Animation for form elements */
+        .form-control,
+        .option-card,
+        .btn {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-check-input:focus {
+            box-shadow: 0 0 0 0.2rem rgba(51, 102, 204, 0.25);
+        }
+
+        /* Icon colors */
+        .text-success {
+            color: var(--success-color) !important;
+        }
+
+        .text-info {
+            color: var(--info-color) !important;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .col-lg-10 {
+            padding: 1rem 5rem 1rem 5rem;
+        }
+
+        .success:hover{
+            background-color: coral;
+        }
+
+        .success{
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+                .submit:hover{
+            background-color: coral;
+        }
+
+        .submit{
+            background-color: var(--primary-color);
+            color: white;
+        }

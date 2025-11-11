@@ -1,0 +1,21 @@
+# Node dependencies
+node_modules/
+
+# Logs
+*.log
+inquiries.log
+
+# Environment variables
+.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Build output (if you ever use build tools)
+dist/
+build/
+
+# Render / Railway specific cache
+.tmp/
+.cache/
