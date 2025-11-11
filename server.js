@@ -35,18 +35,18 @@ app.post("/send-sms", async (req, res) => {
   }
 
   try {
-    const message = encodeURIComponent(
-      `Dear ${name}, Thanks for your interest in our properties at Greenwich Estates. We've received your enquiry and will contact you shortly with more details. PRANAVA GROUP.`
-    );
+    // ✅ Approved template variables
+    const projectName = "Greenwich Estates";
 
-    const url = `http://mysmsshop.in/V2/http-api.php?apikey=${API_KEY}&senderid=${SENDER_ID}&number=91${mobile}&message=${message}&format=json`;
+    // ✅ Use var1, var2 instead of embedding directly
+    const url = `http://mysmsshop.in/V2/http-api.php?apikey=${API_KEY}&senderid=${SENDER_ID}&number=91${mobile}&templateid=1707174884480272903&var1=${encodeURIComponent(
+      name
+    )}&var2=${encodeURIComponent(projectName)}&format=json`;
 
     const response = await fetch(url);
     const text = await response.text();
 
-    console.log(
-      `${new Date().toISOString()} - ${name} (${mobile}) - ${text}`
-    );
+    console.log(`${new Date().toISOString()} - ${name} (${mobile}) - ${text}`);
 
     res.json({ success: true, response: text });
   } catch (err) {
