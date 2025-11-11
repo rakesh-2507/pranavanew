@@ -26,7 +26,6 @@ app.use(bodyParser.json());
 const API_KEY = process.env.API_KEY;
 const SENDER_ID = process.env.SENDER_ID;
 
-// ✅ Route to handle SMS sending
 app.post("/send-sms", async (req, res) => {
   const { name, mobile } = req.body;
 
@@ -35,10 +34,9 @@ app.post("/send-sms", async (req, res) => {
   }
 
   try {
-    // ✅ Approved template variables
     const projectName = "Greenwich Estates";
 
-    // ✅ Use var1, var2 instead of embedding directly
+    // ✅ Correct MySMSShop V2 API call using templateid + vars
     const url = `http://mysmsshop.in/V2/http-api.php?apikey=${API_KEY}&senderid=${SENDER_ID}&number=91${mobile}&templateid=1707174884480272903&var1=${encodeURIComponent(
       name
     )}&var2=${encodeURIComponent(projectName)}&format=json`;
