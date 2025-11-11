@@ -35,11 +35,14 @@ app.post("/send-sms", async (req, res) => {
 
   try {
     const projectName = "Greenwich Estates";
+    const TEMPLATE_ID = "1707174884480272903"; // ✅ DLT approved template
+    const SENDER_ID = "PRNVAG"; // ✅ Use one linked to this template
 
-    // ✅ Correct MySMSShop V2 API call using templateid + vars
-    const url = `http://mysmsshop.in/V2/http-api.php?apikey=${API_KEY}&senderid=${SENDER_ID}&number=91${mobile}&templateid=1707174884480272903&var1=${encodeURIComponent(
+    const url = `http://mysmsshop.in/V2/http-api.php?apikey=${API_KEY}&senderid=${SENDER_ID}&number=91${mobile}&templateid=${TEMPLATE_ID}&var1=${encodeURIComponent(
       name
     )}&var2=${encodeURIComponent(projectName)}&format=json`;
+
+    console.log("📨 Sending to:", url); // for debugging
 
     const response = await fetch(url);
     const text = await response.text();
@@ -48,7 +51,7 @@ app.post("/send-sms", async (req, res) => {
 
     res.json({ success: true, response: text });
   } catch (err) {
-    console.error("Error sending SMS:", err);
+    console.error("❌ Error sending SMS:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
