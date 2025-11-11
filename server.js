@@ -44,9 +44,8 @@ app.post("/send-sms", async (req, res) => {
     const response = await fetch(url);
     const text = await response.text();
 
-    fs.appendFileSync(
-      path.join(__dirname, "inquiries.log"),
-      `${new Date().toISOString()} - ${name} (${mobile}) - ${text}\n`
+    console.log(
+      `${new Date().toISOString()} - ${name} (${mobile}) - ${text}`
     );
 
     res.json({ success: true, response: text });
