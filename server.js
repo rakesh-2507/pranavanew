@@ -22,10 +22,12 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 
-// ✅ Load credentials from .env
+// ✅ Load credentials from .env or Render env
 const API_KEY = process.env.API_KEY;
-const SENDER_ID = process.env.SENDER_ID;
+const SENDER_ID = process.env.SENDER_ID; // e.g., PRNVGP
+const TEMPLATE_ID = "1707174884480272903"; // DLT approved template
 
+// ✅ Route to handle SMS sending
 app.post("/send-sms", async (req, res) => {
   const { name, mobile } = req.body;
 
@@ -35,19 +37,29 @@ app.post("/send-sms", async (req, res) => {
 
   try {
     const projectName = "Greenwich Estates";
-    const TEMPLATE_ID = "1707174884480272903"; // ✅ DLT approved template
-    const SENDER_ID = "PRNVAG"; // ✅ Use one linked to this template
 
+    // ✅ Use Render env variables (no hardcoding)
     const url = `http://mysmsshop.in/V2/http-api.php?apikey=${API_KEY}&senderid=${SENDER_ID}&number=91${mobile}&templateid=${TEMPLATE_ID}&var1=${encodeURIComponent(
       name
     )}&var2=${encodeURIComponent(projectName)}&format=json`;
 
-    console.log("📨 Sending to:", url); // for debugging
+    console.log("📨 Sending to:", url); // Debugging info
 
     const response = await fetch(url);
     const text = await response.text();
 
+    // ✅ Log every request in Render logs
     console.log(`${new Date().toISOString()} - ${name} (${mobile}) - ${text}`);
+
+    // ✅ Optional: Write to local file (only visible locally)
+    try {
+      fs.appendFileSync(
+        path.join(__dirname, "inquiries.log"),
+        `${new Date().toISOString()} - ${name} (${mobile}) - ${text}\n`
+      );
+    } catch (fileErr) {
+      console.warn("⚠️ Could not write to log file:", fileErr.message);
+    }
 
     res.json({ success: true, response: text });
   } catch (err) {
@@ -57,4 +69,6 @@ app.post("/send-sms", async (req, res) => {
 });
 
 // ✅ Start server
-app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+});
